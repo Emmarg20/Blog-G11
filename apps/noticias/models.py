@@ -29,7 +29,7 @@ class Comentario(models.Model):
 		return f"{self.noticia}->{self.texto}"
 	
 	#eliminar la imagen al eliminar el post
-	def delete(self, using =None, keep_parents = False):
-		self.imagen.delete(self.imagen.name)
-		super().delete()
+	#def delete(self, using =None, keep_parents = False):
+		#self.imagen.delete(self.imagen.name)
+		#super().delete()
 	
