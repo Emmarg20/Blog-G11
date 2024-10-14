@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pagina de inicio | {% block titulo %}{% endblock titulo %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
+<!-- poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+
+<body class="contenedor">
+    <header>
+        <nav class="navbar">
+            <a class="marca" href="{% url 'home' %}"><img src="{% static 'img/logo3b.png' %}"></a>
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}">HOME</a></li>
+                <li><a href="{% url 'noticias:listar' %}">NOTICIAS</a></li>
+                <li><a href="{% url 'nosotros' %}">NOSOTROS</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="usuario">
+        {% if user.is_authenticated %}
+            <div style="padding: 10px;">
+                <p class="Usuario-nombre">Hola <strong>{{ user.username }}</strong></p>
+                <br>
+            </div>
+            <form action="{% url 'noticias:cargar_noticia'%}" method="POST">
+                {% csrf_token %}
+                <button class="boton"  type="submit">Publicar Noticia</button>
+            </form>
+            <!-- <a href="{% url 'noticias:cargar_noticia'%}">Publicar Noticias</a> -->
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button class="boton" type="submit">Cerrar sesión</button>
+            </form>
+        {% else %}
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <button class="boton" type="submit">Iniciar sesión</button>
+            </form>
+            <br>
+            <form action="{% url 'usuarios:registro' %}" method="POST">
+                {% csrf_token %}
+                <button class="boton" type="submit">Registrarse</button>
+            </form>
+        {% endif %}
+    </div>
+	<main>
+        <article>
+            <div class="bloque">
+				{% block contenido %}
+
+				{% endblock contenido %}
+				</div>
+        </article>
+
+        <!-- <aside>
+            
+			
+         </aside> -->
+    </main>
+<footer class="footer">
+    <div class="about-section">
+        <h4>Acerca de nosotros</h4>
+        <p>G 11 es un Blog con temática inteligencia artificial creado con fines educativos. </p>
+        <a href="{% url 'nosotros' %}">Leer más</a>
+    </div>
+    <div class="footer-content">
+        <ul>
+            <li><a href="{% url 'home' %}">HOME</a></li>
+            <li><a href="{% url 'noticias:listar' %}">NOTICIAS</a></li>
+            <li><a href="{% url 'nosotros' %}">NOSOTROS</a></li>
+        </ul>
+    </div>
+    <div class="social-media">
+        <a href="https://facebook.com" target="_blank" class="social-icon">Facebook</a>
+        <a href="https://twitter.com" target="_blank" class="social-icon">Twitter</a>
+        <a href="https://instagram.com" target="_blank" class="social-icon">Instagram</a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon">LinkedIn</a>
+    </div>
+    <p class="copy"><small>copyrigth &copy; Blog - Informatorio 2024</small></p>
+</footer>
+
+</body>
+</html>

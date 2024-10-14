@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}NOTICIAS{% endblock titulo %}
+
+
+{% block contenido %}
+<h2 class="noticia-cabecera" style="padding: 5px; border-bottom: 2px solid;">Noticias</h2>
+<div class="noticia-articulo"> <!--contenedor-->
+    {% for noti in noticias %}
+    <ul class="noticia-contenedor">
+        <li class="noticia-lista">
+            <div class="noticia-imagen">
+                <img src="{{noti.imagen.url}}" width="50%">
+            </div>
+            <div class="noticia-texto">
+                <div class="alinear ">
+                    <p class="noticia-categoria">{{noti.categoria_noticia}}</p>
+                    <p class="noticia-fecha">{{noti.fecha}}</p>
+                </div>
+                <p class="noticia-titulo"><a href="{% url 'noticias:detalle' noti.pk %}">{{noti.titulo}}</a></p>
+                <p class="noticia-bajada">{{noti.bajada}}</p>
+                <br>
+                {% if noti.usuario == request.user %}
+                    <div class="noticia-funciones">
+                        <a class="funciones-btn" href="{% url 'noticias:editar_noticia' noti.pk %}">Editar Noticia</a>
+                        <a class="funciones-btn" href="{% url 'noticias:eliminar_noticia' noti.id %}">Eliminar Noticia</a>
+                    </div>
+                {% endif %}
+            </div>
+        </li>
+        <br><br>
+    </ul>
+    {% endfor %}
+</div>
+
+
+{% endblock contenido %}
+
+

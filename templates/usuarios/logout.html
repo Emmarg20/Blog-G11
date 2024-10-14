@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+<center>
+	<div class="logout-container">
+		<div class="logout-messages">
+			{% for message in messages %}
+			<table{% if mesagge.tags %} class="{{ message.tags }}" >{{message}}</table>
+
+		</div>
+
+	</div>
+</center>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}NOTICIAS{% endblock titulo %}
+
+
+{% block contenido %}
+	<!-- <h1>ACA VOY A DETALLAR UNA NOTICIA</h1> -->
+	<div class="noticia-articulo">
+		<div class="noticia-imagen" style="height: 500px;">
+			<img src="{{ noticia.imagen.url }}">
+		</div>
+		<p class="noticia-categoria">{{noticia.categoria_noticia}}</p>
+		<h2 class="noticia-titulo">{{noticia.titulo}}</h2>
+		<h3 class="noticia-bajada">{{noticia.bajada}}</h3>
+		<p class="noticia-fecha">{{noticia.fecha}}</p>
+		<p class="noticia-cuerpo">{{noticia.cuerpo}}</p>
+		<br><br>
+		<br>
+		<a class="funcion-volver"  href="{% url 'noticias:listar' %}">VOLVER</a>
+		<div class="comentario-formu">
+			<form method="POST" action="{% url 'noticias:comentar' %}">
+				{% csrf_token %}
+				<textarea name="comentario" maxlength="1500"> </textarea>
+				<input type="text" name="id_noticia" value="{{noticia.pk}}" hidden=""> 
+				<input type="submit" value="Comentar" class="boton">
+			</form>
+		</div>
+		<!-- <h1>comentarios</h1> -->
+		<br>
+		<div class="comentarios-container">
+			<h3 class="comentarios-titulo">Comentarios</h3>
+			<br>
+			<!-- <h1>debera ver solo el usuario creador del comentario</h1> -->
+			{% for comentario in comentarios %}
+			<div class="comentario">
+				<p><strong>{{ comentario.usuario.username }}</strong> / {{ comentario.fecha }}</p>
+				<p> {{ comentario.texto }}</p>
+				
+				{% if comentario.usuario == request.user %}
+					<form action="{% url 'noticias:eliminarmicomentario' comentario.id %}" method="post" style="display:inline;">
+						{% csrf_token %}
+						<button type="submit" class="boton">Eliminar</button>
+					</form>
+				{% endif %}
+			</div><br>
+			{% endfor %}
+		</div>
+	</div>
+		
+{% endblock contenido %}
+
+
+

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}HOME{% endblock titulo %}
+
+{% block contenido %}
+
+
+
+<div class="fondo">
+    <h2 class="noticia-cabecera">¡Descubre el Fascinante Mundo de la Inteligencia Artificial!</h2>
+        <img class="imagen-principal" src="/static/img/home2.png" alt="primera">
+    <div class="contendor-tarjetas">
+        <div class="card">
+            <h2 class="tarjeta-titulo">Encuentra nuevas herramientas digitales</h2>
+            <p class="tarjeta-cuerpo">Descubre herramientas digitales innovadoras que optimizan tu productividad y creatividad.
+                Desde aplicaciones de gestión de proyectos hasta plataformas de diseño, hay opciones para cada necesidad. Explora, 
+                prueba y elige las que mejor se adapten a ti para transformar tu trabajo diario.
+                </p>
+                <p class="tarjeta-bajada"><strong>"Encuentra las herramientas que inspiren tu camino hacia el éxito y la innovación."</strong></p>
+        </div>
+        <div class="card">
+            <h2 class="tarjeta-titulo">Explora Herramientas de IA Innovadoras</h2>
+            <p class="tarjeta-cuerpo">Adéntrate en el mundo de la inteligencia artificial con herramientas que transforman la forma en que trabajas. 
+                Desde asistentes virtuales hasta análisis de datos avanzados, estas tecnologías te ayudarán a tomar decisiones más informadas y a automatizar tareas. 
+                </p>
+                <p class="tarjeta-bajada"><strong>¡Potencia tu creatividad y productividad con IA!</strong></p>
+        </div>
+        <div class="card">
+            <h2 class="tarjeta-titulo">Potencia Tu Aprendizaje en Línea</h2>
+            <p class="tarjeta-cuerpo">Descubre plataformas y recursos digitales que enriquecen tu experiencia de aprendizaje. Desde cursos interactivos hasta comunidades de estudio, 
+                estas herramientas te permiten aprender a tu ritmo y conectar con expertos. 
+                </p>
+                <p class="tarjeta-bajada"><strong>¡Transforma tu educación y adquiere nuevas habilidades desde cualquier lugar!</strong></p>
+        </div>
+    </div>
+    <a class="funcion-home" href="{% url 'noticias:listar' %}">COMENCEMOS...</a>
+</div>
+
+
+{% endblock contenido %}
+

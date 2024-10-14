@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}ELIMINAR NOTICIA{% endblock titulo %}
+
+{% block contenido %}
+<CENTER>
+    <h2>Usted desea eliminar su publicacion?</h2>
+    <h3>{{noti.titulo}}</h3>
+    <img src="{{noti.imagen.url}}" width="50%" height="50%">
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Si, eliminar</button>
+        <br>
+        <a href="{% url 'noticias:listar' %}">No, volver a las noticias</a>
+    </form>
+</CENTER>
+{% endblock contenido %}
+
+
+
+

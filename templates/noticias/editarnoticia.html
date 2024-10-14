@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}EDITAR NOTICIA{% endblock titulo %}
+
+{% block contenido %}
+
+
+<center>
+<h2>Editar</h2>
+<h3>{{noti.titulo}}</h3>
+
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+    <br>
+    <a href="{% url 'noticias:listar' %}">No, volver a las noticias</a>
+</form>
+</center>
+
+
+{% endblock contenido %}
